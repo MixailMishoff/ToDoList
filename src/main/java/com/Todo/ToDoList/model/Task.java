@@ -18,8 +18,6 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Priority priority = Priority.MEDIUM;
     private LocalDateTime dueDate;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)
