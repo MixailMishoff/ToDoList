@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,8 +19,7 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private LocalDateTime createdAt;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Task> tasks = new ArrayList<>();
 
 }

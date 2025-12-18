@@ -18,10 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-//@RequiredArgsConstructor
 public class SecurityConfig {
-    //    private final JWTFilter filter;
-//    private final CustomUserDetailService uds;
     @Autowired
     private JWTFilter filter;
     @Autowired
@@ -32,9 +29,9 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() // Разрешаем ВСЕ запросы по этому пути
+                                .requestMatchers("/api/auth/**").permitAll() // Разрешаем ВСЕ запросы по этому пути
 //                        .requestMatchers("/api/debug/**").permitAll()
-                        .anyRequest().authenticated()
+                                .anyRequest().authenticated()
                 )
                 .headers(headers -> headers
                         .frameOptions(frame -> frame.disable())
@@ -52,18 +49,9 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(uds);
-//        authProvider.setUserDetailsService(uds);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
-
-//    @Bean
-//    public AuthenticationProvider authenticationProvider() {
-//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-//        authProvider.setUserDetailsService(uds);
-//        authProvider.setPasswordEncoder(passwordEncoder());
-//        return authProvider;
-//    }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
